@@ -20,6 +20,6 @@ public class PlatformPositioning : MonoBehaviour
     {
         DinoMovement dino = collision.GetComponent<DinoMovement>();
         if (dino != null)
-            transform.position = new Vector3(transform.position.x + 150, transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x + 900, transform.position.y, transform.position.z);
     }
 }

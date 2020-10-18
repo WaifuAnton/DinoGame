@@ -10,7 +10,7 @@ public class DinoMovement : MonoBehaviour
     Vector2 move, jump;
     RaycastHit2D[] hitBuffer = new RaycastHit2D[1];
     //Collider2D collider;
-    const float minMoveDistance = 0.4f;
+    const float minMoveDistance = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,14 +25,14 @@ public class DinoMovement : MonoBehaviour
     {
         rb2d.Cast(Vector2.down, hitBuffer);
         float distance = hitBuffer[0].distance;
-        if (distance < minMoveDistance)
+        if (distance < minMoveDistance && Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            rb2d.gravityScale = 1;
+            rb2d.AddForce(jump, ForceMode2D.Impulse);       
+        }
+        else if (distance < minMoveDistance)
         {
             rb2d.gravityScale = 0;
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                rb2d.gravityScale = 1;
-                rb2d.AddForce(jump, ForceMode2D.Impulse);
-            }
             rb2d.AddForce(move, ForceMode2D.Force);
         }
         else

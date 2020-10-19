@@ -8,9 +8,6 @@ public class DinoMovement : MonoBehaviour
     public float jumpForce = 10;
     Rigidbody2D rb2d;
     Vector2 move, jump;
-    RaycastHit2D[] hitBuffer = new RaycastHit2D[1];
-    //Collider2D collider;
-    const float minMoveDistance = 0.1f;
 
     // Start is called before the first frame update
     void Start()

@@ -21,21 +21,15 @@ public class DinoMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        rb2d.Cast(Vector2.down, hitBuffer);
-        float distance = hitBuffer[0].distance;
-        if (distance < minMoveDistance && Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            rb2d.gravityScale = 1;
-            rb2d.AddForce(jump, ForceMode2D.Impulse);       
-        }
-        else if (distance < minMoveDistance)
-        {
-            rb2d.gravityScale = 0;
+        if (rb2d.IsTouchingLayers(LayerMask.GetMask("Platform")) && Input.GetKeyDown(KeyCode.UpArrow))
+            rb2d.AddForce(jump, ForceMode2D.Impulse);
+    }
+
+    private void FixedUpdate()
+    {
+        if (rb2d.IsTouchingLayers(LayerMask.GetMask("Platform")))       
             rb2d.AddForce(move, ForceMode2D.Force);
-        }
-        else
-            rb2d.gravityScale = 1;
     }
 }

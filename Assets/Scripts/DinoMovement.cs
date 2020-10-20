@@ -5,6 +5,8 @@ using UnityEngine;
 public class DinoMovement : MonoBehaviour
 {
     public float speed = 10;
+    public float acceleration = 4;
+    public float maxSpeed = 30;
     public float jumpForce = 10;
     Rigidbody2D rb2d;
     Vector2 move, jump;
@@ -15,6 +17,7 @@ public class DinoMovement : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         move = new Vector2(speed, 0);
         jump = new Vector2(0, jumpForce);
+        Debug.Log(float.MaxValue);
     }
 
     // Update is called once per frame
@@ -26,7 +29,8 @@ public class DinoMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rb2d.IsTouchingLayers(LayerMask.GetMask("Platform")))       
-            rb2d.AddForce(move, ForceMode2D.Force);
+        rb2d.AddForce(move, ForceMode2D.Force);
+        if (move.x < maxSpeed)
+            move.x += acceleration * Time.fixedDeltaTime;
     }
 }

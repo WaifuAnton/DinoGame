@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class ObstacleGenerator : MonoBehaviour
 {
+    [SerializeField]
+    CactusTouch cactusBig;
+
+    [SerializeField]
+    CactusTouch cactusSmall;
+
+    [SerializeField] 
+    DinoMovement dino;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame

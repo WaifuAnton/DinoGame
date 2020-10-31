@@ -27,7 +27,7 @@ public class DinoMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rb2d.velocity.x < maxSpeed)
+        if (rb2d.velocity.x < maxSpeed && rb2d.IsTouchingLayers(LayerMask.GetMask("Platform")))
             rb2d.AddForce(move, ForceMode2D.Force);
     }
 }
